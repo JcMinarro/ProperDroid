@@ -1,0 +1,5 @@
+allprojects {
+	group=GROUP
+	version=VERSION_NAME
+	apply plugin: 'maven'
+}
