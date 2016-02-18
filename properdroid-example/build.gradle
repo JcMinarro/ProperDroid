@@ -1,0 +1,104 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url uri('../repo')
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.jcminarro:properdroid-plugin:0.1-SNAPSHOT'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'com.jcminarro.properdroid'
+
+repositories {
+    jcenter()
+    maven {
+        url uri('../repo')
+    }
+}
+
+def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+
+properdroid {
+    properdroidvalues = [
+            default : [
+                    gitSha: gitSha,
+                    developer: "Jc Miñarro",
+                    booleanValue: true,
+                    intValue: 0,
+                    doubleValue: 2.55,
+                    longValue: 38l,
+                    stringValue: "Hello world!!! ProperDroid is here"
+            ],
+            flavor1 : [
+                    intValue: 1
+            ],
+            flavor2 : [
+                    intValue: 2
+            ],
+            debug : [
+                    booleanValue: false
+            ],
+            release : [
+                    booleanValue: true
+            ],
+            flavor1Debug : [
+                    publicVariantName: "First flavor on Debug"
+            ],
+            flavor1Release : [
+                    publicVariantName: "First flavor on Release"
+            ],
+            flavor2Debug : [
+                    publicVariantName: "Second flavor on Debug"
+            ],
+            flavor2Release : [
+                    publicVariantName: "Second flavor on Release"
+            ]
+    ]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.jcminarro.properdroidexample"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+
+        flavor1 {
+        }
+
+        flavor2 {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.jcminarro:properdroid:0.1-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+}
