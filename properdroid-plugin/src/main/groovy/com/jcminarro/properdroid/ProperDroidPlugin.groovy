@@ -13,15 +13,15 @@ class ProperDroidPlugin implements Plugin<Project> {
         project.extensions.create("properdroid", ProperDroidExtension)
         if (hasApp) {
             project.afterEvaluate({
-                if (project.properdroid?.properdroidvalues) {
-                    def defaultProperties = project.properdroid?.properdroidvalues?.default ?: [:]
+                if (project?.properdroid?.properdroidvalues) {
+                    def defaultProperties = project?.properdroid?.properdroidvalues?.default ?: [:]
                     def variants = project.android.applicationVariants
                     variants.each {
                         Map properties = [:]
-                        properties.putAll defaultProperties
-                        properties.putAll project.properdroid.properdroidvalues["${it.flavorName}"] as Map  ?: [:]
-                        properties.putAll project.properdroid.properdroidvalues["${it.buildType.name}"] as Map  ?: [:]
-                        properties.putAll project.properdroid.properdroidvalues["${it.name}"] as Map  ?: [:]
+                        properties += defaultProperties
+                        properties += project.properdroid.properdroidvalues["${it.flavorName}"] as Map ?: [:]
+                        properties += project.properdroid.properdroidvalues["${it.buildType.name}"] as Map ?: [:]
+                        properties += project.properdroid.properdroidvalues["${it.name}"] as Map ?: [:]
                         def assetsDir = new File("$project.projectDir/src/${it.name}/assets/")
                         assetsDir.mkdirs()
                         def properdroidJson = new File(assetsDir, "properdroid.json")
