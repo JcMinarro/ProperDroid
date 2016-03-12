@@ -6,8 +6,11 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+        classpath 'com.novoda:bintray-release:0.3.5'
     }
 }
+
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'groovyx.grooid.groovy-android'
 
@@ -32,6 +35,14 @@ uploadArchives {
             repository(url: uri('../repo'))
         }
     }
+}
+
+publish {
+    userOrg = USER
+    groupId = GROUP_ID
+    artifactId = ARTIFACT_ID
+    version = VERSION_NAME
+    website = GIT_URL
 }
 
 dependencies {

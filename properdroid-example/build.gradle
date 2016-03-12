@@ -2,13 +2,10 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven {
-            url uri('../repo')
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'com.jcminarro:properdroid-plugin:0.1-SNAPSHOT'
+        classpath 'com.jcminarro:properdroid-plugin:0.1.0'
     }
 }
 apply plugin: 'com.android.application'
@@ -16,9 +13,6 @@ apply plugin: 'com.jcminarro.properdroid'
 
 repositories {
     jcenter()
-    maven {
-        url uri('../repo')
-    }
 }
 
 def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
@@ -98,7 +92,7 @@ android {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    compile 'com.jcminarro:properdroid:0.1-SNAPSHOT'
+    compile 'com.jcminarro:properdroid:0.1.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
 }
