@@ -28,10 +28,48 @@ android {
 uploadArchives {
     repositories {
         mavenDeployer {
-            pom.artifactId = "properdroid"
-            repository(url: uri('../repo'))
+            repository(id: 'bintray-jcminarro-maven', url: "https://api.bintray.com/maven/jcminarro/maven/$POM_ARTIFACT_ID") {
+                authentication(userName: BINTRAY_USER, password: BINTRAY_API_KEY)
+            }
+            pom.project {
+                artifactId POM_ARTIFACT_ID
+                name POM_NAME
+                description POM_DESCRIPTION
+                url POM_URL
+
+                licenses {
+                    license {
+                        name POM_LICENCE_NAME
+                        url POM_LICENCE_URL
+                        distribution POM_LICENCE_DIST
+                    }
+                }
+
+                scm {
+                    url POM_SCM_URL
+                    connection POM_SCM_CONNECTION
+                    developerConnection POM_SCM_DEV_CONNECTION
+                }
+
+                developers {
+                    developer {
+                        id POM_DEVELOPER_ID
+                        name POM_DEVELOPER_NAME
+                        email POM_DEVELOPER_EMAIL
+                    }
+                }
+            }
         }
     }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 dependencies {
