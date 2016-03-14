@@ -1,6 +1,6 @@
 ProperDroid
 ====
-ProperDroid is a gradle plugin and an Android library that simplifies the way that config diferent variant on your project.
+ProperDroid is a gradle plugin and an Android library that simplifies the way that config different variant on your project.
 
 ## How ProperDroid stores
 It get information from your build.gradle and put them on a json file that sotre inside of your `assets` folder. Later, on runtime, help you get them very easy.
