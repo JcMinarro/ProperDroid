@@ -2,6 +2,7 @@ ProperDroid
 ====
 [ ![Pluging](https://api.bintray.com/packages/jcminarro/maven/properdroid-plugin/images/download.svg) ](https://bintray.com/jcminarro/maven/properdroid-plugin/_latestVersion) 
 [ ![Library](https://api.bintray.com/packages/jcminarro/maven/properdroid/images/download.svg) ](https://bintray.com/jcminarro/maven/properdroid/_latestVersion)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ProperDroid-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3282)
 
 ProperDroid is a gradle plugin and an Android library that simplifies the way that config different variant on your project.
 
